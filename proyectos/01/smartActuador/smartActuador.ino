@@ -27,8 +27,8 @@ Adafruit_MQTT_Publish luzSta = Adafruit_MQTT_Publish(&mqtt, "sala/luz/sta");
 /************* Funcionalidad de sala.luz **************/
 int luzPin = LED_BUILTIN;
 int luzVar = LOW;
-int luzON = LOW;
-int luzOFF = !luzON;
+int luzOn = LOW;
+int luzOff = !luzOn;
 void luzSetup(){
   pinMode(luzPin,OUTPUT);
 }
@@ -42,17 +42,17 @@ void luzCallback(char *payload, uint16_t len) {
   Serial.print(" -> ");
 
   if(msg == "on"){
-    luzVar = luzON;
+    luzVar = luzOn;
   } else if(msg == "off"){
     luzVar == luzOff;
-  } else if(luzVar == "toggle"){
+  } else if(msg == "toggle"){
     luzVar = !luzVar;
   }
 
   String estado = (luzVar == luzOn? "on":"off");
   Serial.println(estado);
   
-  luzSet.publish(estado);
+  luzSta.publish(estado.c_str());
 }
 
 
