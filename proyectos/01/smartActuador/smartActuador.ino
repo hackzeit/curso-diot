@@ -2,13 +2,11 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
-/************************* WiFi Access Point *********************************/
-
+/********** WiFi Access Point ***********/
 #define WLAN_SSID       "network"
 #define WLAN_PASS       "password"
 
-/************************* Adafruit.io Setup *********************************/
-
+/********** MQTT Broker *****************/
 #define MQTT_SERVER "m14.cloudmqtt.com"
 #define MQTT_PORT   1883
 #define MQTT_USER   "user"
