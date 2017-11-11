@@ -27,8 +27,8 @@ Adafruit_MQTT_Publish luzSta = Adafruit_MQTT_Publish(&mqtt, "sala/luz/sta");
 /************* Funcionalidad de sala.luz **************/
 int luzPin = LED_BUILTIN;
 int luzVar = LOW;
-int luzOn = LOW;
-int luzOff = !luzOn;
+const int luzOn = LOW;
+const int luzOff = !luzOn;
 void luzSetup(){
   pinMode(luzPin,OUTPUT);
 }
