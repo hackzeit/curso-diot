@@ -34,7 +34,7 @@ void luzSetup(){
 }
 void luzCallback(char *payload, uint16_t len) {
   String msg = String(payload);
-  
+
   Serial.print("Luz peticion entrante: ");
   Serial.println(msg);
   Serial.print("Estado: ");
@@ -51,7 +51,7 @@ void luzCallback(char *payload, uint16_t len) {
 
   String estado = (luzVar == luzOn? "on":"off");
   Serial.println(estado);
-  
+
   luzSta.publish(estado.c_str());
 }
 
@@ -60,7 +60,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
 
-  Serial.println(F("Adafruit MQTT demo"));
+  Serial.println(F("Projecto 01: Smart Actuador con codigo modular"));
 
   // Connect to WiFi access point.
   Serial.println(); Serial.println();

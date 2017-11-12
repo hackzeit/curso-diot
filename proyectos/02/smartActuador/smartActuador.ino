@@ -4,7 +4,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
 
-  Serial.println(F("Adafruit MQTT demo"));
+  Serial.println(F("Projecto 02: Smart Actuador con codigo modular"));
 
   // Connect to WiFi access point.
   Serial.println(); Serial.println();
@@ -28,7 +28,7 @@ void setup() {
 void loop() {
   MQTT_connect();
   mqtt.processPackets(10000);
-  if(! mqtt.ping()) {
+  if (! mqtt.ping()) {
     mqtt.disconnect();
   }
 }
