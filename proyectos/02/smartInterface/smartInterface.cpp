@@ -1,4 +1,4 @@
-#include "smartActuador.h"
+#include "smartInterface.h"
 
 void MQTT_connect() {
   int8_t ret;
