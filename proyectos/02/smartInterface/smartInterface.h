@@ -3,14 +3,14 @@
 #include "Adafruit_MQTT_Client.h"
 
 /********** WiFi Access Point ***********/
-#define WLAN_SSID       "diot"
-#define WLAN_PASS       "diot1234"
+#define WLAN_SSID       "network"
+#define WLAN_PASS       "password"
 
 /********** MQTT Broker *****************/
 #define MQTT_SERVER "m14.cloudmqtt.com"
-#define MQTT_PORT   13600
-#define MQTT_USER   "whyeaytn"
-#define MQTT_PASS   "MjryhT6Dijp_"
+#define MQTT_PORT   1883
+#define MQTT_USER   "user"
+#define MQTT_PASS   "pass"
 
 /************ clientes wifi y mqtt*************/
 extern WiFiClient wifi;
