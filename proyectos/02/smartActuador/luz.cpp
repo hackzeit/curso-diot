@@ -11,15 +11,14 @@ const int luzOn = LOW;
 const int luzOff = !luzOn;
 
 int luzPin = LED_BUILTIN;
-int luzVar = LOW;
-
+int luzVar = luzOff;
 
 void luzSetup(){
   pinMode(luzPin,OUTPUT);
   luzSet.setCallback(luzCallback);
   mqtt.subscribe(&luzSet);
+  luzSta.publish("off");
 }
-
 
 void luzCallback(char *payload, uint16_t len) {
   String msg = String(payload);
@@ -33,13 +32,13 @@ void luzCallback(char *payload, uint16_t len) {
   if(msg == "on"){
     luzVar = luzOn;
   } else if(msg == "off"){
-    luzVar == luzOff;
+    luzVar = luzOff;
   } else if(msg == "toggle"){
     luzVar = !luzVar;
   }
 
   String estado = (luzVar == luzOn? "on":"off");
   Serial.println(estado);
-  
+  digitalWrite(luzPin,luzVar);
   luzSta.publish(estado.c_str());
 }

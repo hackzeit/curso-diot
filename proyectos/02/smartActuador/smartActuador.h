@@ -10,16 +10,15 @@
 #define MQTT_SERVER "m14.cloudmqtt.com"
 #define MQTT_PORT   1883
 #define MQTT_USER   "user"
-#define MQTT_PASS   "key"
+#define MQTT_PASS   "key" 
 
 /************ clientes wifi y mqtt*************/
-static WiFiClient wifi;
-static Adafruit_MQTT_Client mqtt(&wifi, MQTT_SERVER, MQTT_PORT, MQTT_USER, MQTT_USER, MQTT_PASS);
+extern WiFiClient wifi;
+extern Adafruit_MQTT_Client mqtt;
 
 void MQTT_connect();
 
 /*************** Actuadores *******************/
 
-// Actuador topic: sala/luz
 void luzSetup();
 void luzCallback(char *payload, uint16_t len);
