@@ -13,8 +13,8 @@
 #define MQTT_PASS   "key"
 
 /************ clientes wifi y mqtt*************/
-WiFiClient client;
-Adafruit_MQTT_Client mqtt(&client, MQTT_SERVER, MQTT_PORT, MQTT_USER, MQTT_USER, MQTT_PASS);
+WiFiClient wifi;
+Adafruit_MQTT_Client mqtt(&wifi, MQTT_SERVER, MQTT_PORT, MQTT_USER, MQTT_USER, MQTT_PASS);
 
 
 /****************************** Feeds ***************************************/
@@ -25,12 +25,15 @@ Adafruit_MQTT_Publish luzSta = Adafruit_MQTT_Publish(&mqtt, "sala/luz/sta");
 
 
 /************* Funcionalidad de sala.luz **************/
-int luzPin = LED_BUILTIN;
-int luzVar = LOW;
 const int luzOn = LOW;
 const int luzOff = !luzOn;
+int luzPin = LED_BUILTIN;
+int luzVar = luzOff;
 void luzSetup(){
   pinMode(luzPin,OUTPUT);
+  luzSet.setCallback(luzCallback);
+  mqtt.subscribe(&luzSet);
+  luzCallback("off",6);
 }
 void luzCallback(char *payload, uint16_t len) {
   String msg = String(payload);
@@ -44,14 +47,14 @@ void luzCallback(char *payload, uint16_t len) {
   if(msg == "on"){
     luzVar = luzOn;
   } else if(msg == "off"){
-    luzVar == luzOff;
+    luzVar = luzOff;
   } else if(msg == "toggle"){
     luzVar = !luzVar;
   }
 
   String estado = (luzVar == luzOn? "on":"off");
   Serial.println(estado);
-
+  digitalWrite(luzPin,luzVar);
   luzSta.publish(estado.c_str());
 }
 
@@ -79,8 +82,6 @@ void setup() {
 
   // luz
   luzSetup();
-  luzSet.setCallback(luzCallback);
-  mqtt.subscribe(&luzSet);
 }
 
 void loop() {
