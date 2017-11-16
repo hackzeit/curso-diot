@@ -1,5 +1,8 @@
 #include "smartInterface.h"
 
+WiFiClient wifi;
+Adafruit_MQTT_Client mqtt(&wifi, MQTT_SERVER, MQTT_PORT, MQTT_USER, MQTT_USER, MQTT_PASS);
+
 void setup() {
   Serial.begin(115200);
   delay(10);
@@ -27,7 +30,7 @@ void setup() {
 
 void loop() {
   MQTT_connect();
-  mqtt.processPackets(2500);
+  mqtt.processPackets(3000);
   if(! mqtt.ping()) {
     mqtt.disconnect();
   }

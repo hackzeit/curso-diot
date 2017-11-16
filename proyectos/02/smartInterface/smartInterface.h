@@ -3,18 +3,18 @@
 #include "Adafruit_MQTT_Client.h"
 
 /********** WiFi Access Point ***********/
-#define WLAN_SSID       "network"
-#define WLAN_PASS       "password"
+#define WLAN_SSID       "diot"
+#define WLAN_PASS       "diot1234"
 
 /********** MQTT Broker *****************/
 #define MQTT_SERVER "m14.cloudmqtt.com"
-#define MQTT_PORT   1883
-#define MQTT_USER   "user"
-#define MQTT_PASS   "key"
+#define MQTT_PORT   13600
+#define MQTT_USER   "whyeaytn"
+#define MQTT_PASS   "MjryhT6Dijp_"
 
 /************ clientes wifi y mqtt*************/
-static WiFiClient wifi;
-static Adafruit_MQTT_Client mqtt(&wifi, MQTT_SERVER, MQTT_PORT, MQTT_USER, MQTT_USER, MQTT_PASS);
+extern WiFiClient wifi;
+extern Adafruit_MQTT_Client mqtt;
 
 void MQTT_connect();
 

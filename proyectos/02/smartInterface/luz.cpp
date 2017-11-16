@@ -18,7 +18,7 @@ int luzButton = D2;
 
 void luzSetup(){
   pinMode(luzLed,OUTPUT);
-  pinMode(luzButton,INPUT);
+  pinMode(luzButton,INPUT_PULLUP);
   luzSta.setCallback(luzCallback);
   mqtt.subscribe(&luzSta);
 }
@@ -32,8 +32,9 @@ void luzCallback(char *payload, uint16_t len) {
   if(msg == "on"){
     luzLedVal = luzOn;
   } else if(msg == "off"){
-    luzLedVal == luzOff;
+    luzLedVal = luzOff;
   }
+  digitalWrite(luzLed,luzLedVal);
 }
 
 void luzLeerToggle(){
